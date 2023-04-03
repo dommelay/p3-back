@@ -28,12 +28,12 @@ app.put('/logs/:id', (req, res) => {
     })
 })
 
-
-
-
-
-
-
+//delete route
+app.delete('logs/:id', (req, res) => {
+    Trip.findByIdAndRemove(req.params.id).then((deletedTrip) => {
+        res.json(deletedTrip)
+    })
+})
 
 
 
