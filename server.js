@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require('mongoose');
 const Trip = require('./models/trip.js')
 const cors = require('cors')
-
 app.use(express.json()); //use .json(), not .urlencoded()
 app.use(cors())
 
@@ -29,7 +28,7 @@ app.put('/logs/:id', (req, res) => {
 })
 
 //delete route
-app.delete('logs/:id', (req, res) => {
+app.delete('/logs/:id', (req, res) => {
     Trip.findByIdAndRemove(req.params.id).then((deletedTrip) => {
         res.json(deletedTrip)
     })
@@ -41,7 +40,7 @@ app.delete('logs/:id', (req, res) => {
 app.listen(3000, ()=>{
     console.log('listening...');
 });
-
+mongoose.connect('mongodb://localhost:27017/travelcrud')
 mongoose.connection.once('open', ()=>{
     console.log('connected to mongod...');
 });
